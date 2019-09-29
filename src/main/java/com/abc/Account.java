@@ -5,17 +5,28 @@ import java.util.List;
 
 public class Account {
 
-    public static final int CHECKING = 0;
-    public static final int SAVINGS = 1;
-    public static final int MAXI_SAVINGS = 2;
+    // == constants ==
 
-    private final int accountType;
+   private enum AccountType {
+        CHECKING,
+        SAVINGS,
+        MAXI_SAVINGS,
+    }
+
+    // == fields ==
+
+    private final AccountType accountType;
     public List<Transaction> transactions;
 
-    public Account(int accountType) {
+
+    // == constructor ==
+
+    public Account(AccountType accountType) {
         this.accountType = accountType;
         this.transactions = new ArrayList<Transaction>();
     }
+
+    // == public methods ==
 
     public void deposit(double amount) {
         if (amount <= 0) {
@@ -66,7 +77,7 @@ public void withdraw(double amount) {
         return amount;
     }
 
-    public int getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
