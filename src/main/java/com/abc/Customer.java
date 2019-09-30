@@ -5,36 +5,40 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class Customer {
+class Customer {
     private String name;
     private List<Account> accounts;
 
-    public Customer(String name) {
+    Customer(String name) {
         this.name = name;
         this.accounts = new ArrayList<Account>();
     }
 
-    public String getName() {
+    private String toDollars(double d){
+        return String.format("$%,.2f", abs(d));
+    }
+
+    String getName() {
         return name;
     }
 
-    public Customer openAccount(Account account) {
+    Customer openAccount(Account account) {
         accounts.add(account);
         return this;
     }
 
-    public int getNumberOfAccounts() {
+    int getNumberOfAccounts() {
         return accounts.size();
     }
 
-    public double totalInterestEarned() {
+    double totalInterestEarned() {
         double total = 0;
         for (Account a : accounts)
             total += a.interestEarned();
         return total;
     }
 
-    public String getStatement() {
+    String getStatement() {
         String statement = null;
         statement = "Statement for " + name + "\n";
         double total = 0.0;
@@ -46,7 +50,7 @@ public class Customer {
         return statement;
     }
 
-    private String statementForAccount(Account a) {
+    String statementForAccount(Account a) {
         String s = "";
 
        //Translate to pretty account type
@@ -72,7 +76,5 @@ public class Customer {
         return s;
     }
 
-    private String toDollars(double d){
-        return String.format("$%,.2f", abs(d));
-    }
+
 }
