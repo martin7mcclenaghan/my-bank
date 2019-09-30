@@ -8,9 +8,9 @@ class Transaction {
 
     enum TransactionType {WITHDRAWAL, DEPOSIT};
 
-    private TransactionType transactionType;
+    private final TransactionType transactionType;
     private final double amount;
-    private Date transactionDate;
+    private final Date transactionDate;
 
     Transaction(double amount) {
         this.amount = amount;
