@@ -1,23 +1,23 @@
 package com.abc;
 
+import com.abc.Account.AccountType;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.abc.Account.AccountType;
 
 import static java.lang.Math.abs;
 
 class Customer {
     private String name;
-    private List<Account> accounts;
+    private List<Account> accountList;
 
     Customer(String name) {
         this.name = name;
-        this.accounts = new ArrayList<Account>();
+        this.accountList = new ArrayList<Account>();
     }
 
-    private String toDollars(double d) {
-        return String.format("$%,.2f", abs(d));
+    private String toDollars (double amount){
+        return String.format("$%,.2f", abs(amount));
     }
 
     String getName() {
@@ -25,58 +25,62 @@ class Customer {
     }
 
     boolean openAccount(AccountType accountType) {
-
-        return accounts.add(new Account(accountType));
+        return accountList.add(new Account(accountType));
 
     }
 
     int getNumberOfAccounts() {
-        return accounts.size();
+        return accountList.size();
     }
 
     double totalInterestEarned() {
         double total = 0;
-        for (Account a : accounts)
+        for (Account a : accountList)
             total += a.interestEarned();
         return total;
     }
 
     String getStatement() {
-        String statement = null;
-        statement = "Statement for " + name + "\n";
+        StringBuffer stringBuffer = new StringBuffer();
+
+        stringBuffer.append("Statement for ").append(name).append("\n");
         double total = 0.0;
-        for (Account a : accounts) {
-            statement += "\n" + statementForAccount(a) + "\n";
-            total += a.sumTransactions();
+
+        for (Account account : accountList) {
+            stringBuffer.append("\n").append(statementForAccount(account)).append("\n");
+            total += account.sumTransactions();
         }
-        statement += "\nTotal In All Accounts " + toDollars(total);
-        return statement;
+
+        stringBuffer.append("\nTotal In All Accounts ").append(toDollars(total));
+        return stringBuffer.toString();
     }
 
-    String statementForAccount(Account a) {
-        String s = "";
+   private String statementForAccount(Account account) {
+
+        StringBuffer stringBuffer = new StringBuffer();
 
         //Translate to pretty account type
-        switch (a.getAccountType()) {
-            case Account.CHECKING:
-                s += "Checking Account\n";
-                break;
-            case Account.SAVINGS:
-                s += "Savings Account\n";
-                break;
-            case Account.MAXI_SAVINGS:
-                s += "Maxi Savings Account\n";
-                break;
-        }
+       if(account.getAccountType() == AccountType.CHECKING){
+           stringBuffer.append("Checking Account\n");
+
+       } else if(account.getAccountType() == AccountType.SAVINGS){
+           stringBuffer.append("Savings Account\n");
+
+       } else if(account.getAccountType() == AccountType.MAXI_SAVINGS){
+           stringBuffer.append("Maxi Savings Account\n");
+       }
 
         //Now total up all the transactions
         double total = 0.0;
-        for (Transaction t : a.transactions) {
-            s += "  " + (t.amount < 0 ? "withdrawal" : "deposit") + " " + toDollars(t.amount) + "\n";
-            total += t.amount;
+        for (Transaction transaction : account.transactions) {
+
+            stringBuffer.append(transaction.getTransactionType()).append(" ");
+            stringBuffer.append(transaction.getAmountString()).append("\n");
+            total += transaction.getAmount();
         }
-        s += "Total " + toDollars(total);
-        return s;
+        stringBuffer.append("Total ").append(toDollars(total));
+
+        return stringBuffer.toString();
     }
 
 
