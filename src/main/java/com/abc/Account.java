@@ -7,7 +7,7 @@ public class Account {
 
     // == constants ==
 
-   private enum AccountType {
+   enum AccountType {
         CHECKING,
         SAVINGS,
         MAXI_SAVINGS,

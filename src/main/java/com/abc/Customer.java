@@ -3,6 +3,8 @@ package com.abc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.abc.Account.AccountType;
+
 import static java.lang.Math.abs;
 
 class Customer {
@@ -14,7 +16,7 @@ class Customer {
         this.accounts = new ArrayList<Account>();
     }
 
-    private String toDollars(double d){
+    private String toDollars(double d) {
         return String.format("$%,.2f", abs(d));
     }
 
@@ -22,9 +24,10 @@ class Customer {
         return name;
     }
 
-    Customer openAccount(Account account) {
-        accounts.add(account);
-        return this;
+    boolean openAccount(AccountType accountType) {
+
+        return accounts.add(new Account(accountType));
+
     }
 
     int getNumberOfAccounts() {
@@ -53,8 +56,8 @@ class Customer {
     String statementForAccount(Account a) {
         String s = "";
 
-       //Translate to pretty account type
-        switch(a.getAccountType()){
+        //Translate to pretty account type
+        switch (a.getAccountType()) {
             case Account.CHECKING:
                 s += "Checking Account\n";
                 break;
