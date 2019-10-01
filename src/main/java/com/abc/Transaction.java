@@ -4,7 +4,7 @@ import java.util.Date;
 
 import static java.lang.Math.abs;
 
-class Transaction {
+public class Transaction {
 
     enum TransactionType {WITHDRAWAL, DEPOSIT};
 
@@ -12,7 +12,7 @@ class Transaction {
     private final double amount;
     private final Date transactionDate;
 
-    Transaction(double amount) {
+    public Transaction(double amount) {
         this.amount = amount;
 
         if(amount > 0){
@@ -24,19 +24,19 @@ class Transaction {
         this.transactionDate = DateProvider.getInstance().now();
     }
 
-    String getTransactionType() {
+   public String getTransactionType() {
         return this.transactionType.name();
     }
 
-    String getAmountString() {
+   public String getAmountString() {
         return String.format("$%,.2f", abs(this.amount));
     }
 
-    double getAmount (){
+    public double getAmount (){
         return this.amount;
     }
 
-    String getTransactionDate() {
+   public String getTransactionDate() {
         return this.transactionDate.toString();
     }
 }
