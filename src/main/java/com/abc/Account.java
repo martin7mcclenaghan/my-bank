@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Account {
 
-    // == constants ==
+    //== constants ==
 
-   enum AccountType {
+    enum AccountType {
         CHECKING,
         SAVINGS,
         MAXI_SAVINGS,
@@ -16,6 +16,7 @@ public class Account {
     // == fields ==
 
     private final AccountType accountType;
+   private final int accountNumber;
     public List<Transaction> transactions;
 
 
@@ -23,6 +24,7 @@ public class Account {
 
     public Account(AccountType accountType) {
         this.accountType = accountType;
+        this.accountNumber = AccountNumberGenerator.INSTANCE.getNextAccountNumber();
         this.transactions = new ArrayList<Transaction>();
     }
 
@@ -73,7 +75,7 @@ public void withdraw(double amount) {
     private double checkIfTransactionsExist(boolean checkAll) {
         double amount = 0.0;
         for (Transaction t: transactions)
-            amount += t.amount;
+            amount += t.getAmount();
         return amount;
     }
 
@@ -81,4 +83,7 @@ public void withdraw(double amount) {
         return accountType;
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
 }
