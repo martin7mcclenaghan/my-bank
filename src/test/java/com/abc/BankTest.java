@@ -1,6 +1,5 @@
 package com.abc;
 
-import com.abc.accounts.Account;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

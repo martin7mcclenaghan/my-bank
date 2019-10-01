@@ -1,7 +1,5 @@
 package com.abc;
 
-import com.abc.accounts.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 
