@@ -6,17 +6,26 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 class Customer {
+
+    // == fields ==
+
     private String name;
     private List<Account> accountList;
+
+    // == constructor ==
 
     Customer(String name) {
         this.name = name;
         this.accountList = new ArrayList<Account>();
     }
 
+    // == private methods ==
+
     private String toDollars (double amount){
         return String.format("$%,.2f", abs(amount));
     }
+
+    // == package-private methods ==
 
     String getName() {
         return name;
