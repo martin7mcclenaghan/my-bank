@@ -5,14 +5,6 @@ import java.util.List;
 
 public class Account {
 
-    //== constants ==
-
-    enum AccountType {
-        CHECKING,
-        SAVINGS,
-        MAXI_SAVINGS,
-    }
-
     // == fields ==
 
     private final AccountType accountType;

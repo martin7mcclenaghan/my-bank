@@ -1,7 +1,6 @@
 package com.abc;
 
 import org.junit.Test;
-import com.abc.Account.AccountType;
 
 import static org.junit.Assert.assertEquals;
 
