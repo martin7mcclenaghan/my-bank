@@ -1,6 +1,6 @@
 package com.abc;
 
-public enum AccountNumberGenerator {
+enum AccountNumberGenerator {
 
     INSTANCE;
 

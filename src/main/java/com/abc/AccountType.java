@@ -1,6 +1,6 @@
 package com.abc;
 
-enum AccountType {
+public enum AccountType {
     CHECKING,
     SAVINGS,
     MAXI_SAVINGS,
